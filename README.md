@@ -14,7 +14,7 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone [https://github.com/ningyima/ember-practice.git](https://github.com/ningyima/ember-practice.git)` this repository
+* `git clone https://github.com/ningyima/ember-practice.git` this repository
 * `cd super-rentals`
 * `npm install`
 
