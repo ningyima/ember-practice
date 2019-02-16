@@ -14,7 +14,7 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone https://github.com/ningyima/ember-practice.git` this repository
+* `git clone https://github.com/ningyima/ember-practice.git`
 * `cd super-rentals`
 * `npm install`
 
@@ -55,3 +55,10 @@ Specify what it takes to deploy your app.
 * Development Browser Extensions
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+
+### GitHub remote repository management
+
+* `git remote -v`
+* `git push origin master`
+* `git remote rm origin`
+* `git remote add origin https://github.com/user/repo.git`
