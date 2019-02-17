@@ -1,0 +1,14 @@
+{{!-- {{outlet}} --}}
+{{#each this.model as |fund|}}
+  <article class="listing">
+    <div class="details">
+      <h3>{{fund.fields.title}}</h3>
+      <div class="detail">
+        <span>Number: </span> {{fund.pk}}
+      </div>
+      <div class="detail">
+        <span>model: </span> {{fund.model}}
+      </div>
+    </div>
+  </article>
+{{/each}}

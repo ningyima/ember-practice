@@ -15,6 +15,7 @@
   <RentalListing @rental={{rentalUnit}} />
 {{/each}} --}}
 <ListFilter
+  @placeholder="Filter By City"
   @filter={{action "filterByCity"}}
   as |filteredResults|
 >
