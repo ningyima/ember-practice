@@ -49,6 +49,7 @@ p {
   border: none;
   font-size: 16px;
   opacity: 0.9;
+  display: inline-block;
 }
 
 .button:hover {
@@ -177,7 +178,6 @@ p {
 
 .jumbo {
   padding: 50px;
-  padding-bottom: 0;
   background: #f6f6f6;
 }
 
@@ -203,14 +203,6 @@ p {
 /**
  * Individual Listings
  */
-.clearfix {
-  clear: both;
-}
-
-.left {
-  float: left;
-}
-
 .listing {
   margin-top: 15px;
   background-color: #f6f6f6;
@@ -227,8 +219,8 @@ p {
 
 .listing img {
   height: 100px;
-  float: left;
-  padding-right: 45px;
+  /* float: left; */
+  /* padding-right: 45px; */
   border-radius: 5px;
 }
 
@@ -258,7 +250,7 @@ p {
 }
 
 .listing small {
-  float: left;
+  /* float: left; */
   display: block;
   text-align: center;
   width: 136px;
@@ -373,6 +365,14 @@ p {
   position: relative;
 }
 
+.clearfix {
+  clear: both;
+}
+
+.margin-top-10 {
+  margin-top: 10px;
+}
+
 .tomster {
   background: url(../assets/images/teaching.png);
   background-size: contain;
@@ -380,5 +380,5 @@ p {
   height: 200px;
   width: 200px;
   position: relative;
-  top: -20px;
+  top: -10px;
 }
