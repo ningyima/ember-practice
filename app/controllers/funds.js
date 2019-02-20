@@ -2,15 +2,13 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
   actions: {
-    filterByTitle(param) {
+    async filterByTitle(param) {
       if (param !== '') {
-        return this.store.query('fund', { title: param }).then((results) => {
-          return { query: param, results: results };
-        });
+        let results = await this.store.query('fund', { title: param });
+        return { query: param, results: results };
       } else {
-        return this.store.findAll('fund').then((results) => {
-          return { query: param, results: results };
-        });
+        let results = await this.store.findAll('fund');
+        return { query: param, results: results };
       }
     }
   }
