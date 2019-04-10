@@ -1,0 +1,9 @@
+{{!-- {{yield}} --}}
+<ul>
+  {{#each cart.items as |item|}}
+    <li>
+      {{item.fields.title}}
+      <button {{action "remove" item}}>Remove</button>
+    </li>
+  {{/each}}
+</ul>
