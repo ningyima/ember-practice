@@ -2,11 +2,15 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
+  store: service(),
   cart: service('shopping-cart'),
 
   actions: {
-    remove(item) {
-      this.cart.remove(item);
+    async remove(item) {
+      let self = this;
+      await this.get('store').query('fund', { pk: item.pk, selected: false }).then(function() {
+        self.cart.remove(item);
+      });
     }
   }
 });
