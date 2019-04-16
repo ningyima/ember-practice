@@ -1,9 +1,17 @@
 {{!-- {{yield}} --}}
+{{!-- <CartCounter /> --}}
+<div class="cart-counter">{{cart.counter}}</div>
 <ul>
   {{#each cart.items as |item|}}
     <li>
       {{item.fields.title}}
       <button {{action "remove" item}}>Remove</button>
     </li>
+  {{else}}
+    <p class="cart-empty">
+      Your cart is empty.
+    </p>
   {{/each}}
 </ul>
+
+<div class="cart-total">Total: </div>

@@ -11,7 +11,7 @@ Router.map(function() {
   this.route('contact');
   this.route('rentals');
   this.route('funds');
-  this.route('cart');
+  // this.route('cart');
 });
 
 export default Router;

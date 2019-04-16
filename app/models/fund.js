@@ -1,7 +1,9 @@
 import DS from 'ember-data';
 
-export default DS.Model.extend({
-  model: DS.attr(),
-  pk: DS.attr(),
-  fields: DS.attr(),
+const { Model, attr } = DS;
+
+export default Model.extend({
+  model: attr(),
+  pk: attr(),
+  fields: attr(),
 });
