@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import computed from '@ember/object';
+// import computed from '@ember/object';
 import layout from '../templates/components/cart-counter';
 
 export default Component.extend({

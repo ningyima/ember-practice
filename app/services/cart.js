@@ -18,6 +18,7 @@ export default Service.extend({
 
   remove(item) {
     this.items.removeObject(item);
+    this.updateCartTotal();
   },
 
   empty() {
