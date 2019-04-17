@@ -29,7 +29,12 @@ export default Service.extend({
 
   updateCartTotal() {
     let total = this.items.reduce((accumulator, item) => {
-      return accumulator + parseInt(item.amount);
+      let amount = parseInt(item.amount);
+      if (isNaN(amount)) {
+        return accumulator;
+      } else {
+        return accumulator + amount;
+      }
     }, 0);
     this.set('total', total);
   }

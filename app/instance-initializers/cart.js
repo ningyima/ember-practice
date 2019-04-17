@@ -1,7 +1,8 @@
 // import { A } from '@ember/array'
 
-export function initialize(/*appInstance*/) {
-  // let CartService = appInstance._lookupFactory('service:cart');
+export function initialize(app) {
+  // const { container = app } = app;
+  const cart = app.lookup('service:cart');
 
   // let payload;
 
@@ -10,20 +11,18 @@ export function initialize(/*appInstance*/) {
   //   payload = JSON.parse(payload);
   // }
 
-  // let cart = CartService.create({
-  //   content: A(),
-  // });
+  // let cart = CartService.init();
 
   // if (payload && cart.localStorage) {
   //   cart.pushPayload(payload);
   // }
 
-  // appInstance.register('cart:main', cart, { instantiate: false });
-  // appInstance.inject('controller', 'cart', 'cart:main');
-  // appInstance.inject('component', 'cart', 'cart:main');
+  app.register('cart:main', cart, { instantiate: false });
+  app.inject('controller', 'cart', 'cart:main');
+  app.inject('component', 'cart', 'cart:main');
 }
 
 export default {
-  // name: 'cart',
-  initialize
+  initialize,
+  name: 'cart',
 };

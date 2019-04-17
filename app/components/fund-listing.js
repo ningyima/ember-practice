@@ -3,7 +3,6 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   store: service(),
-  cart: service('cart'),
 
   actions: {
     async add(item) {
