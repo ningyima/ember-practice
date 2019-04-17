@@ -11,6 +11,10 @@ export default Component.extend({
       await this.get('store').query('fund', { pk: item.pk, selected: false }).then(function() {
         self.cart.remove(item);
       });
+    },
+
+    updateCartTotal() {
+      this.cart.updateCartTotal();
     }
   }
 });

@@ -4,8 +4,9 @@
 <ul>
   {{#each cart.items as |item|}}
     <li>
-      {{item.fields.title}}
-      <button {{action "remove" item}}>Remove</button>
+      <div>{{item.fields.title}}</div>
+      <div>{{input value=item.amount key-up=(action "updateCartTotal")}}</div>
+      <button class="remove-button" {{action "remove" item}}>Remove</button>
     </li>
   {{else}}
     <p class="cart-empty">
@@ -14,4 +15,4 @@
   {{/each}}
 </ul>
 
-<div class="cart-total">Total: </div>
+<div class="cart-total">Total: {{cart.total}}</div>
