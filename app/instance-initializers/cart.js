@@ -1,25 +1,24 @@
 // import { A } from '@ember/array'
 
 export function initialize(app) {
-  // const { container = app } = app;
-  const cart = app.lookup('service:cart');
+  let payload;
+  const { container = app } = app;
+  const cart = container.lookup('service:cart');
 
-  // let payload;
+  if (window.localStorage.getItem('cart')) {
+    console.log(window.localStorage);
+    // window.localStorage.removeItem('cart');
+    let cartString = window.localStorage.getItem('cart');
+    payload = JSON.parse(cartString);
+  }
 
-  // if (window.localStorage.getItem('cart')) {
-  //   payload = window.localStorage.getItem('cart');
-  //   payload = JSON.parse(payload);
-  // }
+  if (payload !== undefined && cart.localStorage) {
+    cart.pushPayload(payload);
+  }
 
-  // let cart = CartService.init();
-
-  // if (payload && cart.localStorage) {
-  //   cart.pushPayload(payload);
-  // }
-
-  app.register('cart:main', cart, { instantiate: false });
-  app.inject('controller', 'cart', 'cart:main');
-  app.inject('component', 'cart', 'cart:main');
+  container.register('cart:main', cart, { instantiate: false });
+  container.inject('controller', 'cart', 'cart:main');
+  container.inject('component', 'cart', 'cart:main');
 }
 
 export default {

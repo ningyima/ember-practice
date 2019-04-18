@@ -120,8 +120,9 @@ export default function() {
 ];
 
   let fundsData = funds.map(fund => {
-    fund['fields']['selected'] = false;
+    fund['fields']['amount'] = 0;
     fund['fields']['pk'] = fund.pk;
+
     return {
       type: fund.model,
       id: fund.pk,
@@ -146,22 +147,36 @@ export default function() {
         return fund.attributes.fields.title.toLocaleLowerCase().indexOf(request.queryParams.title.toLocaleLowerCase()) !== -1;
       });
       return { data: filteredFunds };
-    } else {
-      if (request.queryParams.pk !== undefined) {
-        let processedFunds = fundsData.map(fund => {
-          if (fund.id === request.queryParams.pk) {
-            fund['attributes']['fields']['selected'] = (request.queryParams.selected === 'true');
-          }
-          return fund;
-        });
-        return {
-          data: processedFunds
+    } else if (request.queryParams.pk !== undefined) {
+      let processedFunds = fundsData.map(fund => {
+        if (fund.id === request.queryParams.pk) {
+          fund['attributes']['fields']['amount'] = 0;
         }
-      } else {
-        return {
-          data: fundsData
-        }
+        return fund;
+      });
+      return {
+        data: processedFunds
       }
-    }   
+    } else if (request.queryParams.cartitems !== undefined) {
+      let cartItems = JSON.parse(request.queryParams.cartitems);
+      let storedFunds = fundsData.map(fund => {
+        let fundId = fund['attributes']['fields']['pk'];
+        let items = cartItems['items'];
+        for (let i = 0; i < items.length; i++) {
+          let item = items[i];
+          if (item.fields.pk === fundId) {
+            fund.attributes.fields.amount = parseInt(item.fields.amount);
+          }
+        }
+        return fund;
+      });
+      return {
+        data: storedFunds
+      }
+    } else {
+      return {
+        data: fundsData
+      } 
+    }
   })
 }

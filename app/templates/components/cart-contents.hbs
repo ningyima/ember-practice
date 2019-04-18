@@ -1,11 +1,9 @@
-{{!-- {{yield}} --}}
-{{!-- <CartCounter /> --}}
 <div class="cart-counter">{{cart.counter}}</div>
 <ul>
   {{#each cart.items as |item|}}
     <li>
       <div>{{item.fields.title}}</div>
-      <div>{{input value=item.amount key-up=(action "updateCartTotal")}}</div>
+      <div>{{input value=item.fields.amount key-up=(action "updateCartTotal")}}</div>
       <button class="remove-button" {{action "remove" item}}>Remove</button>
     </li>
   {{else}}

@@ -7,7 +7,7 @@ export default Component.extend({
   actions: {
     async remove(item) {
       let self = this;
-      await this.get('store').query('fund', { pk: item.pk, selected: false }).then(function() {
+      await this.get('store').query('fund', { pk: item.pk }).then(function() {
         self.cart.remove(item);
       });
     },
