@@ -6,7 +6,7 @@ export function initialize(app) {
   const cart = container.lookup('service:cart');
 
   if (window.localStorage.getItem('cart')) {
-    console.log(window.localStorage);
+    // console.log('initializer', window.localStorage);
     // window.localStorage.removeItem('cart');
     let cartString = window.localStorage.getItem('cart');
     payload = JSON.parse(cartString);

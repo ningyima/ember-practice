@@ -2,7 +2,8 @@
   <div class="details">
     <div>
       <span>{{this.fund.fields.title}}</span>
-      {{#if (eq this.fund.fields.amount 0)}}
+      {{!-- {{#if (eq this.fund.fields.amount 0)}} --}}
+      {{#if (not this.fund.fields.selected)}}
         <a onclick={{action "add" this.fund}} role="button">Add to Cart</a>        
       {{/if}}
     </div>

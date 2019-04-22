@@ -122,6 +122,7 @@ export default function() {
   let fundsData = funds.map(fund => {
     fund['fields']['amount'] = 0;
     fund['fields']['pk'] = fund.pk;
+    fund['fields']['selected'] = false;
 
     return {
       type: fund.model,
@@ -150,7 +151,7 @@ export default function() {
     } else if (request.queryParams.pk !== undefined) {
       let processedFunds = fundsData.map(fund => {
         if (fund.id === request.queryParams.pk) {
-          fund['attributes']['fields']['amount'] = 0;
+          fund.attributes.fields.selected = request.queryParams.selected;
         }
         return fund;
       });
@@ -166,6 +167,7 @@ export default function() {
           let item = items[i];
           if (item.fields.pk === fundId) {
             fund.attributes.fields.amount = parseInt(item.fields.amount);
+            fund.attributes.fields.selected = true;
           }
         }
         return fund;
