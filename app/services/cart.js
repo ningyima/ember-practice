@@ -13,6 +13,7 @@ export default Service.extend({
     this._super(...arguments);
     this.set('items', []);
     this.set('total', 0);
+
   },
 
   add(item) {
@@ -49,13 +50,9 @@ export default Service.extend({
     }
   },
 
-  async pushPayload(payLoad) {
-    let cartitems = JSON.stringify(payLoad);
-    let self = this;
-    await this.get('store').query('fund', { cartitems: cartitems }).then(function() {
-      self.set('items', payLoad['items']);
-      self.set('total', payLoad['total']);
-    });
+  pushPayload(payLoad) {
+    this.set('items', payLoad['items']);
+    this.set('total', payLoad['total']);
   },
 
   _dumpToLocalStorage: observer('items', 'total', function() {
