@@ -9,7 +9,9 @@ export function initialize(app) {
     // console.log('initializer', window.localStorage);
     // window.localStorage.removeItem('cart');
     let cartString = window.localStorage.getItem('cart');
-    payload = JSON.parse(cartString);
+    if (cartString) {
+      payload = JSON.parse(cartString);
+    }   
   }
 
   if (payload !== undefined && cart.localStorage) {

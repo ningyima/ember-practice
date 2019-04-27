@@ -7,13 +7,26 @@ export default Component.extend({
   actions: {
     async remove(item) {
       let self = this;
-      await this.get('store').query('fund', { pk: item.pk }).then(function() {
-        self.cart.remove(item);
+      let id = item.pk;
+      await this.get('store')
+        .findRecord('fund', id)
+        .then(fund => {
+          fund.set('selected', false);
+          fund.set('amount', 0);
+          self.cart.remove(item);
       });
     },
 
-    updateCartTotal() {
-      this.cart.updateCartTotal();
+    updateCartTotal(item) {
+      let self = this;
+      let id = item.pk;
+      let amount = parseInt(item.amount);
+      this.get('store')
+        .findRecord('fund', id)
+        .then(fund => {
+          fund.set('amount', amount);
+          self.cart.updateCartTotal();
+      });
     }
   }
 });

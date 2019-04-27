@@ -54,20 +54,20 @@ export default function() {
       "title": "Children's Scholarship Fund"
     }
   },
-  // {
-  //   "model": "fund",
-  //   "pk": "FB0220000",
-  //   "fields": {
-  //     "title": "The Fund for I-House"
-  //   }
-  // },
-  // {
-  //   "model": "fund",
-  //   "pk": "FB0231000",
-  //   "fields": {
-  //     "title": "SETI@home"
-  //   }
-  // },
+  {
+    "model": "fund",
+    "pk": "FB0220000",
+    "fields": {
+      "title": "The Fund for I-House"
+    }
+  },
+  {
+    "model": "fund",
+    "pk": "FB0231000",
+    "fields": {
+      "title": "SETI@home"
+    }
+  },
   // {
   //   "model": "fund",
   //   "pk": "FB0320000",
@@ -120,14 +120,12 @@ export default function() {
 ];
 
   let fundsData = funds.map(fund => {
-    fund['fields']['amount'] = 0;
-    fund['fields']['pk'] = fund.pk;
-    fund['fields']['selected'] = false;
+    let attributes = Object.assign(fund['fields'], { amount: 0, selected: false, pk: fund.pk });
 
     return {
       type: fund.model,
       id: fund.pk,
-      attributes: fund,
+      attributes: attributes,
     }
   });
 
@@ -145,29 +143,19 @@ export default function() {
   this.get('/funds', function (db, request) {
     if (request.queryParams.title !== undefined) {
       let filteredFunds = fundsData.filter(function(fund) {
-        return fund.attributes.fields.title.toLocaleLowerCase().indexOf(request.queryParams.title.toLocaleLowerCase()) !== -1;
+        return fund.attributes.title.toLocaleLowerCase().indexOf(request.queryParams.title.toLocaleLowerCase()) !== -1;
       });
       return { data: filteredFunds };
-    } else if (request.queryParams.pk !== undefined) {
-      let processedFunds = fundsData.map(fund => {
-        if (fund.id === request.queryParams.pk) {
-          fund.attributes.fields.selected = request.queryParams.selected;
-        }
-        return fund;
-      });
-      return {
-        data: processedFunds
-      }
     } else if (request.queryParams.cartitems !== undefined) {
       let cartItems = JSON.parse(request.queryParams.cartitems);
       let storedFunds = fundsData.map(fund => {
-        let fundId = fund['attributes']['fields']['pk'];
+        let fundId = fund['attributes']['pk'];
         let items = cartItems['items'];
         for (let i = 0; i < items.length; i++) {
           let item = items[i];
-          if (item.fields.pk === fundId) {
-            fund.attributes.fields.amount = parseInt(item.fields.amount);
-            fund.attributes.fields.selected = true;
+          if (item.pk === fundId) {
+            fund.attributes.amount = parseInt(item.amount);
+            fund.attributes.selected = true;
           }
         }
         return fund;

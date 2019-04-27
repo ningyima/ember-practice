@@ -1,14 +1,14 @@
-<div class="cart-counter">{{cart.counter}}</div>
+<div class="cart-counter">Count of Funds: {{cart.counter}}</div>
 <ul>
   {{#each cart.items as |item|}}
     <li>
-      <div>{{item.fields.title}}</div>
-      <div>{{input value=item.fields.amount key-up=(action "updateCartTotal")}}</div>
+      <div>{{item.title}}</div>
+      <div>{{input value=item.amount key-up=(action "updateCartTotal" item)}}</div>
       <button class="remove-button" {{action "remove" item}}>Remove</button>
     </li>
   {{else}}
     <p class="cart-empty">
-      Your cart is empty.
+      Your basket is empty.
     </p>
   {{/each}}
 </ul>

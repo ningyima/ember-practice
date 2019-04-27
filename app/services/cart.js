@@ -32,7 +32,7 @@ export default Service.extend({
 
   updateCartTotal() {
     let total = this.items.reduce((accumulator, item) => {
-      let amount = parseInt(item.fields.amount);
+      let amount = parseInt(item.amount);
       if (isNaN(amount)) {
         return accumulator;
       } else {

@@ -7,7 +7,7 @@ export default Controller.extend({
         let results = await this.store.query('fund', { title: param });
         return { query: param, results: results };
       } else {
-        let results = await this.store.findAll('fund');
+        let results = await this.store.peekAll('fund');
         return { query: param, results: results };
       }
     }

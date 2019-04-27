@@ -1,9 +1,8 @@
 <article class="listing">
   <div class="details">
     <div>
-      <span>{{this.fund.fields.title}}</span>
-      {{!-- {{#if (eq this.fund.fields.amount 0)}} --}}
-      {{#if (not this.fund.fields.selected)}}
+      <span>{{this.fund.title}}</span>
+      {{#if (not this.fund.selected)}}
         <a onclick={{action "add" this.fund}} role="button">Add to Cart</a>        
       {{/if}}
     </div>
