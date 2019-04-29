@@ -3,7 +3,7 @@
     <div>
       <span>{{this.fund.title}}</span>
       {{#if (not this.fund.selected)}}
-        <a onclick={{action "add" this.fund}} role="button">Add to Cart</a>        
+        <a onclick={{action "add" this.fund}} role="button" class="add-button" title="Select fund to put in your basket">+</a>        
       {{/if}}
     </div>
   </div>

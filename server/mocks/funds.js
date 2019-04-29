@@ -95,6 +95,7 @@ module.exports = function(app) {
   fundsRouter.get('/', function(req, res) {
     res.send({
       'data':  fundsData
+      // 'data': funds
     });
   });
 

@@ -27,6 +27,13 @@ export default Component.extend({
           fund.set('amount', amount);
           self.cart.updateCartTotal();
       });
+      // this.get('store')
+      //   .findRecord('cart-content', id)
+      //   .then(content => content.set('amount', amount));
+    },
+
+    submit() {
+      this.cart.submitBasket();
     }
   }
 });

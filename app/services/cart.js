@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import { computed, observer } from '@ember/object'; 
 import { inject as service } from '@ember/service';
+import { getOwner } from '@ember/application';
 
 export default Service.extend({
   items: null,
@@ -13,10 +14,10 @@ export default Service.extend({
     this._super(...arguments);
     this.set('items', []);
     this.set('total', 0);
-
   },
 
   add(item) {
+    let cartContent = this.get('store').createRecord('cart-content', item);
     this.items.pushObject(item);
   },
 
@@ -53,6 +54,12 @@ export default Service.extend({
   pushPayload(payLoad) {
     this.set('items', payLoad['items']);
     this.set('total', payLoad['total']);
+  },
+
+  submitBasket() {
+    let items = this.get('items');
+    let total = this.get('total');
+    alert("Submit basket successfully!");
   },
 
   _dumpToLocalStorage: observer('items', 'total', function() {

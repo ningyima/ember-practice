@@ -1,16 +1,25 @@
-<div class="cart-counter">Count of Funds: {{cart.counter}}</div>
-<ul>
-  {{#each cart.items as |item|}}
-    <li>
-      <div>{{item.title}}</div>
-      <div>{{input value=item.amount key-up=(action "updateCartTotal" item)}}</div>
-      <button class="remove-button" {{action "remove" item}}>Remove</button>
-    </li>
-  {{else}}
-    <p class="cart-empty">
-      Your basket is empty.
-    </p>
-  {{/each}}
-</ul>
+<div class="basket-container">
+  <div class="basket-counter">Count of Funds: {{cart.counter}}</div>
 
-<div class="cart-total">Total: {{cart.total}}</div>
+  <ul class="basket-list">
+    {{#each cart.items as |item|}}
+      <li>
+        <h3>{{item.title}}</h3>
+        <button class="remove-button" {{action "remove" item}}>X</button>
+        <div class="amount-container">
+          <label>Amount: $</label>
+          {{input class="input-field" value=item.amount key-up=(action "updateCartTotal" item)}}
+        </div>
+        
+      </li>
+    {{else}}
+      <p class="basket-empty">
+        Your basket is empty.
+      </p>
+    {{/each}}
+  </ul>
+
+  <div class="basket-total">Total: {{cart.total}}</div>
+
+  <button class="basket-submit" {{action "submit"}}>Submit Basket</button>
+</div>
